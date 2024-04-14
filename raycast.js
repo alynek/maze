@@ -1,60 +1,62 @@
+const wallSize = 32;
+const countLines = 11;
+const countColumns = 15;
 
+let maze = createRandomWall()
 
-const tamanhoCelula = 32;
-const quantiLinhas = 11;
-const quantiColunas = 15;
-
-let labirinto = criarLabirinto()
-
-function criarLabirinto(){
+function createRandomWall(){
     
-    let parede = [];
+    let wall = [];
 
-    for(let i = 0; i < quantiLinhas ; i++){
-        parede[i] = []
-        for(let j = 0; j < quantiColunas; j++){
+    for(let i = 0; i < countLines ; i++){
+        wall[i] = []
+        for(let j = 0; j < countColumns; j++){
             if(j == 0 || j == 14 || i == 0 || i == 10) {
-                parede[i][j] = 1
+                wall[i][j] = 1
             }
             else
             {
-                parede[i][j] = Math.floor(Math.random() * 2)
+                wall[i][j] = Math.floor(Math.random() * 2)
             }
         }
     }
 
-    return parede
+    return wall
 }
 
 
-function g(){
-    for(let i = 0; i < quantiLinhas ; i++){
-        for(let j = 0; j < quantiColunas; j++){
+function render(){
+    for(let i = 0; i < countLines ; i++){
+        for(let j = 0; j < countColumns; j++){
 
-                let ehUmOuZero = labirinto[i][j]
-                let desenhou = ehUmOuZero == 0 ? "#222" : "#fff";
-                let posicaoX = i * tamanhoCelula;
-                let posicaoY = j * tamanhoCelula;
+                let mazeWallValue = maze[i][j]
+                let isBlackOrWhite = mazeWallValue == 0 ? "#222" : "#fff";
+                let posicaoX = i * wallSize;
+                let posicaoY = j * wallSize;
                 stroke("#222");
-                fill(desenhou)
-                rect(posicaoX, posicaoY, tamanhoCelula, tamanhoCelula)
+                fill(isBlackOrWhite)
+                rect(posicaoX, posicaoY, wallSize, wallSize)
         }
     }
 }
 
 
 function setup() {
-    createCanvas(450, 500);
+    let canvas = createCanvas(450, 500);
+
+    // x = (windowWidth - width) / 2 
+    // y = (windowHeight - height) / 20
+    // canvas.position(x, y)
 
 }
 
 function update() {
-    // TODO: update all game objects before we render the next frame
+    
 }
 
 function draw(){
     update()
-    g()
+    render()
 }
 
 
