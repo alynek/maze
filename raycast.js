@@ -1,6 +1,8 @@
 const wallSize = 32;
-const countLines = 11;
+const countRows = 11;
 const countColumns = 15;
+const windowWidth = countColumns * wallSize
+const windowHeight = countRows * wallSize
 
 let maze = createRandomWall()
 
@@ -8,15 +10,15 @@ function createRandomWall(){
     
     let wall = [];
 
-    for(let i = 0; i < countLines ; i++){
-        wall[i] = []
-        for(let j = 0; j < countColumns; j++){
-            if(j == 0 || j == 14 || i == 0 || i == 10) {
-                wall[i][j] = 1
+    for(let x = 0; x < countColumns ; x++){
+        wall[x] = []
+        for(let y= 0; y< countRows; y++){
+            if(y == 0 || y == (countRows - 1) || x == 0 || x == (countColumns - 1)) {
+                wall[x][y] = 1
             }
             else
             {
-                wall[i][j] = Math.floor(Math.random() * 2)
+                wall[x][y] = Math.floor(Math.random() * 2)
             }
         }
     }
@@ -26,13 +28,13 @@ function createRandomWall(){
 
 
 function render(){
-    for(let i = 0; i < countLines ; i++){
-        for(let j = 0; j < countColumns; j++){
+    for(let x = 0; x < countColumns  ; x++){
+        for(let y = 0; y < countRows; y++){
 
-                let mazeWallValue = maze[i][j]
+                let mazeWallValue = maze[x][y]
                 let isBlackOrWhite = mazeWallValue == 0 ? "#222" : "#fff";
-                let posicaoX = i * wallSize;
-                let posicaoY = j * wallSize;
+                let posicaoX = x * wallSize;
+                let posicaoY = y * wallSize;
                 stroke("#222");
                 fill(isBlackOrWhite)
                 rect(posicaoX, posicaoY, wallSize, wallSize)
@@ -42,7 +44,8 @@ function render(){
 
 
 function setup() {
-    let canvas = createCanvas(450, 500);
+    //let canvas = createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);
 
     // x = (windowWidth - width) / 2 
     // y = (windowHeight - height) / 20
