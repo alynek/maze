@@ -5,22 +5,20 @@ const windowWidth = countColumns * wallSideSize + 1
 const windowHeight = countRows * wallSideSize + 1
 
 maze.createRandomMaze(countColumns, countRows)
+player.getCoordinates()
 
 function setup() {
-    //let canvas = createCanvas(windowWidth, windowHeight);
     createCanvas(windowWidth, windowHeight);
-
-    // x = (windowWidth - width) / 2 
-    // y = (windowHeight - height) / 20
-    // canvas.position(x, y)
 }
 
 function update() {
+    player.update()
 }
 
 function draw(){
     update()
     maze.render(countColumns, countRows)
+    player.render()
 }
 
 
