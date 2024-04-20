@@ -1,5 +1,5 @@
 const wallSideSize = 32;
-const countRows = 11;
+const countRows = 15;
 const countColumns = 15;
 const windowWidth = countColumns * wallSideSize + 1
 const windowHeight = countRows * wallSideSize + 1
@@ -9,6 +9,7 @@ player.getCoordinates()
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    
 }
 
 function update() {
